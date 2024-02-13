@@ -40,4 +40,4 @@ def unauth() -> None:
 def forbid() -> None:
     """The forbidden handler
     """
-    abort(403)
+    abort(403, description="Forbidden")
