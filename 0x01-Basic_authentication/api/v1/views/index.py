@@ -34,3 +34,10 @@ def unauth() -> None:
         str: _description_
     """
     abort(401)
+
+
+@app_views.route('/forbidden', strict_slashes=False)
+def forbid() -> None:
+    """The forbidden handler
+    """
+    abort(403)
