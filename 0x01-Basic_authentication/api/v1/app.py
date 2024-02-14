@@ -23,6 +23,8 @@ if auth_type:
 
 @app.before_request
 def validate_request():
+    """This i sthe validation parrt
+    """
     if not auth:
         return
     path_list = [
