@@ -18,8 +18,9 @@ class Auth:
         Returns:
             bool: _description_
         """
-        if not path and not excluded_paths:
+        if path is None or excluded_paths is None:
             return True
+        
         path = path.rstrip("/")
         for ex_path in excluded_paths:
             if path == ex_path.rstrip("/"):
