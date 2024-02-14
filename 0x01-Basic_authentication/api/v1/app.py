@@ -27,12 +27,12 @@ def validate_request():
     """
     if not auth:
         return
-    path_list = [
+    excluded_paths = [
         '/api/v1/status/',
         '/api/v1/unauthorized/',
         '/api/v1/forbidden/'
     ]
-    if not auth.require_auth(request.path):
+    if not auth.require_auth(request.path, excluded_paths):
         return
     auth_header = auth.authorization_header(request)
     if not auth_header:
