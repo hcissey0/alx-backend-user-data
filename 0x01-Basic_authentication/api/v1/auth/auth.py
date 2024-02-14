@@ -18,7 +18,14 @@ class Auth:
         Returns:
             bool: _description_
         """
-        return False
+        if not path and not excluded_paths:
+            return True
+        path = path.rstrip("/")
+        for ex_path in excluded_paths:
+            if path == ex_path.rstrip("/"):
+                return False
+
+        return True
 
     def authorization_header(self, request=None) -> str:
         """_summary_
