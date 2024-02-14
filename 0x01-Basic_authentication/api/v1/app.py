@@ -21,6 +21,26 @@ if auth_type:
     auth = auth_module.Auth(app)
 
 
+@app.before_request
+def validate_request():
+    if not auth:
+        return
+    path_list = [
+        '/api/v1/status/',
+        '/api/v1/unauthorized/',
+        '/api/v1/forbidden/'
+    ]
+    if request.path in path_list:
+        return
+    auth_header = auth.authorization_header(request)
+    if not auth_header:
+        abort(401)
+
+    current_user = auth.current_user(request)
+    if not current_user:
+        abort(403)
+
+
 @app.errorhandler(404)
 def not_found(error) -> str:
     """ Not found handler

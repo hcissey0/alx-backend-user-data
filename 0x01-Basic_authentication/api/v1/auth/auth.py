@@ -20,7 +20,7 @@ class Auth:
         """
         if path is None or excluded_paths is None:
             return True
-        
+
         path = path.rstrip("/")
         for ex_path in excluded_paths:
             if path == ex_path.rstrip("/"):
@@ -37,9 +37,9 @@ class Auth:
         Returns:
             str:
         """
-        if not request:
+        if request is None:
             return None
-        return request.headers.get("Authorization")
+        return request.headers.get("Authorization", None)
 
     def current_user(self, request=None) -> TypeVar('User'):
         """This is the getter for the current user
