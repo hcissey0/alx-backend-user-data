@@ -15,9 +15,9 @@ CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 
 auth = None
 
-auth_type = getenv('AUTH_TYPE')
+auth_type = getenv('AUTH_TYPE', 'auth')
 if auth_type == "auth":
-    Auth = __import__('api.v1.auth.auth').Auth
+    from api.v1.auth.auth import Auth
     auth = Auth()
 # if auth_type:
 #     auth_module = __import__(f'api.v1.auth.{auth_type}', fromlist=['auth'])
@@ -82,4 +82,4 @@ def forbidden(error) -> str:
 if __name__ == "__main__":
     host = getenv("API_HOST", "0.0.0.0")
     port = getenv("API_PORT", "5000")
-    app.run(host=host, port=port)
+    app.run(host=host, port=port, debug=True)
