@@ -35,7 +35,7 @@ def validate_request():
         '/api/v1/unauthorized/',
         '/api/v1/forbidden/'
     ]
-    if auth.require_auth(request.path, excluded_paths) is None:
+    if not auth.require_auth(request.path, excluded_paths):
         return
     auth_header = auth.authorization_header(request)
     if auth_header is None:
