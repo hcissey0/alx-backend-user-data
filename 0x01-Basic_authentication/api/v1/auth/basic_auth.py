@@ -2,6 +2,7 @@
 """The basic auth class"""
 
 from api.v1.auth.auth import Auth
+import base64
 
 
 class BasicAuth(Auth):
@@ -42,4 +43,13 @@ class BasicAuth(Auth):
         Returns:
             str: _description_
         """
-        pass
+        if base64_authorization_header is None:
+            return None
+        if type(base64_authorization_header) is not str:
+            return None
+        try:
+            encoded = base64_authorization_header.encode('utf-8')
+            decoded = base64.b64decode(encoded)
+            return decoded.decode('utf-8')
+        except Exception:
+            return None
