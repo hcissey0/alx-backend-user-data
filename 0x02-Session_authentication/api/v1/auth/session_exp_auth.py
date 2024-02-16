@@ -56,4 +56,10 @@ class SessionExpAuth(SessionAuth):
             return None
         if self.session_duration <= 0:
             return session_dictionary.get('user_id')
-        return super().user_id_for_session_id(session_id)
+        created_at = session_dictionary.get('created_at')
+        if created_at is None:
+            return None
+        expiration = created_at + datetime.timedelta(seconds=self.session_duration)
+        if expiration < datetime.datetime.now():
+            return None
+        return session_dictionary.get('user_id')
