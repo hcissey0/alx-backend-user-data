@@ -11,7 +11,9 @@ class BasicAuth(Auth):
         Auth (_type_): _description_
     """
 
-    def extract_base64_authorization_header(self, authorization_header: str) -> str:
+    def extract_base64_authorization_header(
+            self,
+            authorization_header: str) -> str:
         """_summary_
 
         Args:
@@ -29,7 +31,9 @@ class BasicAuth(Auth):
         authorization_header = authorization_header.strip()
         return authorization_header.removeprefix("Basic ")
 
-    def decode_base64_authorization_header(self, base64_authorization_header: str) -> str:
+    def decode_base64_authorization_header(
+            self,
+            base64_authorization_header: str) -> str:
         """_summary_
 
         Args:
