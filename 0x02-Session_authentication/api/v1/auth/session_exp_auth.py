@@ -39,3 +39,21 @@ class SessionExpAuth(SessionAuth):
         }
         self.user_id_by_session_id[session_id] = session_dictionary
         return session_id
+
+    def user_id_for_session_id(self, session_id: str = None) -> str:
+        """_summary_
+
+        Args:
+            session_id (str, optional): _description_. Defaults to None.
+
+        Returns:
+            str: _description_
+        """
+        if session_id is None:
+            return None
+        session_dictionary = self.user_id_by_session_id.get(session_id)
+        if session_dictionary is None:
+            return None
+        if self.session_duration <= 0:
+            return session_dictionary.get('user_id')
+        return super().user_id_for_session_id(session_id)
