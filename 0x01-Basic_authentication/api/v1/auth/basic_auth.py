@@ -28,8 +28,8 @@ class BasicAuth(Auth):
             return None
         if not authorization_header.startswith("Basic "):
             return None
-        authorization_header = authorization_header.strip()
-        return authorization_header.removeprefix("Basic ")
+        tok = authorization_header.split(' ')[-1]
+        return tok
 
     def decode_base64_authorization_header(
             self,
