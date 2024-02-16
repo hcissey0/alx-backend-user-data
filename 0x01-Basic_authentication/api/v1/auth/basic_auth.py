@@ -26,4 +26,16 @@ class BasicAuth(Auth):
             return None
         if not authorization_header.startswith("Basic "):
             return None
+        authorization_header = authorization_header.strip()
         return authorization_header.removeprefix("Basic ")
+
+    def decode_base64_authorization_header(self, base64_authorization_header: str) -> str:
+        """_summary_
+
+        Args:
+            base64_authorization_header (str): _description_
+
+        Returns:
+            str: _description_
+        """
+        pass
