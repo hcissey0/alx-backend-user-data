@@ -8,7 +8,7 @@ import os
 
 
 @app_views.route('/auth_session/login',
-                 mehtods=['POST'], strict_slashes=False)
+                 methods=['POST'], strict_slashes=False)
 def auth_session_login() -> str:
     """_summary_
     """
@@ -27,6 +27,6 @@ def auth_session_login() -> str:
             from api.v1.app import auth
             session_id = auth.create_session(user.id)
             out = jsonify(user.to_json())
-            out.set_cookie(os.getenv("SESSION_NAME", session_id))
+            out.set_cookie(os.getenv("SESSION_NAME"), session_id)
             return out
     return jsonify({"error": "wrong password"}), 401
