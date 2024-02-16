@@ -55,7 +55,7 @@ class BasicAuth(Auth):
             return None
 
     def extract_user_credentials(
-            self, decoded_base64_authorization_header: str) -> tuple[str, str]:
+            self, decoded_base64_authorization_header: str) -> (str, str):
         """_summary_
 
         Args:
@@ -68,5 +68,5 @@ class BasicAuth(Auth):
             return None, None
         if ":" not in decoded_base64_authorization_header:
             return None, None
-        tok = decoded_base64_authorization_header.split(":")
-        return tok[0], tok[1]
+        email, password = decoded_base64_authorization_header.split(":")
+        return email, password
