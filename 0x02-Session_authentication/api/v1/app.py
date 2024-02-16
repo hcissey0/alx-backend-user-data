@@ -25,6 +25,9 @@ elif auth_type == "basic_auth":
 elif auth_type == 'session_auth':
     from api.v1.auth.session_auth import SessionAuth
     auth = SessionAuth()
+elif auth_type == 'session_db_auth':
+    from api.v1.auth.session_db_auth import SessionDBAuth
+    auth = SessionDBAuth()
 # if auth_type:
 #     auth_module = __import__(f'api.v1.auth.{auth_type}', fromlist=['auth'])
 #     auth = auth_module.Auth(app)

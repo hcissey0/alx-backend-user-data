@@ -62,9 +62,6 @@ class SessionDBAuth(SessionExpAuth):
         for user_session in user_sessions:
             if user_session.session_id == session_id:
                 user_session.remove()
-                return
-        user_id = self.user_id_for_session_id(session_id)
-        if user_id is None:
-            return False
+                return True
 
-        return True
+        return False
