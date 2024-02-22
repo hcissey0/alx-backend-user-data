@@ -46,14 +46,14 @@ class Auth:
         return user
 
     def valid_login(self, email: str, password: str) -> bool:
-        """_summary_
+        """Checks if email and password are valid
 
         Args:
-            email (str): _description_
-            password (str): _description_
+            email (str): The email
+            password (str): The password
 
         Returns:
-            bool: _description_
+            bool: True if valid otherwise False
         """
         try:
             user = self._db.find_user_by(email=email)
@@ -66,10 +66,10 @@ class Auth:
         of the session id
 
         Args:
-            email (str): _description_
+            email (str): The email
 
         Returns:
-            str: _description_
+            str: The session id for the created session
         """
         try:
             user = self._db.find_user_by(email=email)
